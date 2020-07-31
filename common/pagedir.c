@@ -35,10 +35,7 @@ void save_page(webpage_t *page, char *fname){
 
 }
 
-/*
- * FOR LAB 5
- *
- */
+
 /********** verify_file() **********/
 /* see pagedir.h for more information about verify_file */
 
