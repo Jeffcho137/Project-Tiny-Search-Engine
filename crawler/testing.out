@@ -1,0 +1,103 @@
+#!bin/bash
+#
+# testing.sh - script that runs and tests 'crawler' module
+#
+# Outputs the result of each test
+#
+# Jeff Cho CS50 Summer 2020
+
+# no arguments
+'./crawler'
+arguments are not valid 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+
+# external server
+./crawler https://www.bing.com testing 1
+seedURL not in server 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+
+# server invalid
+./crawler http://jeffcho137.com/~jeffrocks/index.html testing 1
+seedURL not in server 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+
+# invalid depths                                                                 
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing -1                                                                          
+arguments are not valid 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing 11 
+arguments are not valid 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+
+# non-existent directory
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html test 1
+Page Directory does not exist 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+
+# excessive many arguments
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing 1 test
+arguments are not valid 
+Usage: ./crawler [seedURL] [pageDir] [0 < maxDepth < 10] 
+
+# valid server with nonexistent URL
+./crawler http://old-www.cs.dartmouth.edu/~jeff/index.html testing 2
+ 0 Webpage Fetched: http://old-www.cs.dartmouth.edu/~jeff/index.html 
+ 0 File does not Exist: http://old-www.cs.dartmouth.edu/~jeff/index.html 
+
+# valid test
+./crawler http://old-www.cs.dartmouth.edu/~cs50/index.html testing 1
+ 0 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/index.html 
+ 0 Scanning Webpage: http://old-www.cs.dartmouth.edu/~cs50/index.html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/ 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/ 
+ 0 Webpage Seen: https://canvas.dartmouth.edu/courses/40751 
+ 0 Unnecessary: https://canvas.dartmouth.edu/courses/40751 
+ 0 Webpage Seen: http://dart-cosc50-2020x.slack.com/ 
+ 0 Unnecessary: http://dart-cosc50-2020x.slack.com/ 
+ 0 Webpage Seen: https://github.com/cs50-summer-2020 
+ 0 Unnecessary: https://github.com/cs50-summer-2020 
+ 0 Webpage Seen: http://old-www.cs.dartmouth.edu/~cs50/Schedule.pdf 
+ 0 Unnecessary: http://old-www.cs.dartmouth.edu/~cs50/Schedule.pdf 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/Lectures/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/Lectures/ 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/Reading/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/Reading/ 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/examples/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/examples/ 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/Logistics/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/Logistics/ 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/Resources/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/Resources/ 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/Labs/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/Labs/ 
+ 0 Webpage Seen: https://www.cs.dartmouth.edu/~cs50/Project/ 
+ 0 Unnecessary: https://www.cs.dartmouth.edu/~cs50/Project/ 
+ 0 Webpage Seen: https://canvas.dartmouth.edu/courses/40751 
+ 0 Unnecessary: https://canvas.dartmouth.edu/courses/40751 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~xia/ 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~xia/ 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~xia/ 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/ 
+
+# valid test & different seed
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing 1
+ 0 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html 
+ 0 Scanning Webpage: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Computer_science.html 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Computer_science.html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/C_(programming_language).html 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/C_(programming_language).html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Unix.html 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Unix.html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Dartmouth_College.html 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Dartmouth_College.html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Hash_table.html 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Hash_table.html 
+ 0 Webpage seen: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Linked_list.html 
+ 0 Page Inserted: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Linked_list.html 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Linked_list.html 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Hash_table.html 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Dartmouth_College.html 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Unix.html 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/C_(programming_language).html 
+ 1 Webpage Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/Computer_science.html 
