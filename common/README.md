@@ -11,3 +11,7 @@ Cleaning up: `make clean`
 ## Notes
 `pagedir` - function utilized by crawler
 compiling archives file to `common.a`
+
+`index` - function used by indexer
+
+`word` - function used by the indexer

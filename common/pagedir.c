@@ -35,6 +35,39 @@ void save_page(webpage_t *page, char *fname){
 
 }
 
+/********** verify_crawler() **********/
+/* see pagedir.h for more information about verify_crawler */
+
+bool verify_crawler(char *dir){
+
+	        // remove ending unneccessary characters
+		//char *end = dir + strlen(dir) - 1;
+		//if (*end == '/'){
+		//      *end = '\0';
+		//}
+		
+	FILE *fp;
+	char *crawl = malloc(strlen(dir) + 10);
+	strcpy(crawl, dir);
+	strcat(crawl, "/.crawler");
+	
+	// checking to open file
+	if ((fp = fopen(crawl, "r")) == NULL){
+	        // free the string
+	        free(crawl);
+	        return false;
+	}
+	
+	else{
+
+	                                                                                                                                                                                    fclose(fp);
+	
+		// free the string
+	        free(crawl);
+		 
+		return true;
+		                                                                                                                                                                                }
+}                                                                                                                                                                                                                            
 
 /********** verify_file() **********/
 /* see pagedir.h for more information about verify_file */
