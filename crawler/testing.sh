@@ -26,10 +26,10 @@
 ./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing 1 test
 
 # valid server with nonexistent URL
-./crawler http://old-www.cs.dartmouth.edu/~jeff/index.html testing 2
+#./crawler http://old-www.cs.dartmouth.edu/~jeff/index.html testing 2
 
 # valid test
-./crawler http://old-www.cs.dartmouth.edu/~cs50/index.html testing 1
+./crawler http://old-www.cs.dartmouth.edu/~cs50/index.html testing 2
 
 # valid test & different seed
-./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing 1
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/wikipedia/index.html testing 3

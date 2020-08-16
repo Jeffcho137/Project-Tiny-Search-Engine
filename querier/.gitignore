@@ -1,0 +1,5 @@
+testoutput/*
+querier
+querier.o
+fuzzquery
+fuzzquery.o

@@ -18,7 +18,7 @@
 ./indexer jeff testing
 
 # valid test
-./indexer ../crawler/testing testoutput
+./indexer ../crawler/testing test
 
 # valid file directory (but no preproduced crawler)
 mkdir crawlertesting

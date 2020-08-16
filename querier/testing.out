@@ -1,0 +1,83 @@
+bash -v testing.sh
+#!/bin/bash
+# Jeff Cho CS50 Summer 2020
+
+cd ../common
+make clean
+make[1]: Entering directory '/net/ifs-users/jeffcho137/cs50/labs/tse-Jeffcho137/common'
+rm -f *~ *.o
+rm -rf *.dSYM
+rm -f 
+make[1]: Leaving directory '/net/ifs-users/jeffcho137/cs50/labs/tse-Jeffcho137/common'
+make
+make[1]: Entering directory '/net/ifs-users/jeffcho137/cs50/labs/tse-Jeffcho137/common'
+gcc -Wall -pedantic -std=c11 -ggdb -I../libcs50    -c -o pagedir.o pagedir.c
+gcc -Wall -pedantic -std=c11 -ggdb -I../libcs50    -c -o index.o index.c
+gcc -Wall -pedantic -std=c11 -ggdb -I../libcs50    -c -o word.o word.c
+make[1]: *** No rule to make target 'list.h', needed by 'list.o'.  Stop.
+make[1]: Leaving directory '/net/ifs-users/jeffcho137/cs50/labs/tse-Jeffcho137/common'
+cd -
+/net/ifs-users/jeffcho137/cs50/labs/tse-Jeffcho137/querier
+
+# Variables
+qq=./querier
+fuzz=./fuzzquery
+crawl=../crawler/data
+index=~cs50/data/tse-output/letters-index-2/
+
+# incorrect pageDirectory
+$qq ../crawler $index
+Directory is not produced by crawler or DNE 
+Usage: ./querier [pageDir] [indexFileName] 
+
+# incorrect IndexFilename
+$qq $crawl ./crawler
+./crawler unable to be opened for reading 
+Usage: ./querier [pageDir] [indexFileName] 
+
+# incorrect number of arguments
+$qq $crawl $index ../crawler
+Insufficient amount of args 
+Usage: ./querier [pageDir] [indexFileName] 
+
+# invalid queries
+echo home_review | $qq $crawl $index
+/net/ifs-users/cs50/data/tse-output/letters-index-2/ unable to be opened for reading 
+Usage: ./querier [pageDir] [indexFileName] 
+
+echo and review | $qq $crawl  $index
+/net/ifs-users/cs50/data/tse-output/letters-index-2/ unable to be opened for reading 
+Usage: ./querier [pageDir] [indexFileName] 
+
+echo or home review | $qq $crawl $index
+/net/ifs-users/cs50/data/tse-output/letters-index-2/ unable to be opened for reading 
+Usage: ./querier [pageDir] [indexFileName] 
+
+echo home and or review | $qq $crawl $index
+/net/ifs-users/cs50/data/tse-output/letters-index-2/ unable to be opened for reading 
+Usage: ./querier [pageDir] [indexFileName] 
+
+echo hom search | $qq $crawl $index
+/net/ifs-users/cs50/data/tse-output/letters-index-2/ unable to be opened for reading 
+Usage: ./querier [pageDir] [indexFileName] 
+
+
+# fuzzquery
+#$fuzz $index 25 http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html | $qq $crawler $index
+
+# Manual Testing
+[jeffcho137@flume querier]$ ./querier ../crawler/data ~cs50/data/tse-output/letters-index-6
+Query?
+hello
+Query: hello
+Matches 0 ranked
+
+Query: experienced 
+Matches 1 documents (ranked)
+score  1 doc  3: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/its-only-the-himalayas_981/index.html
+
+Query: office 
+Matches 2 documents (ranked)
+score  2 doc 21: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/tipping-the-velvet_999/index.html
+score  1 doc 64: http://old-www.cs.dartmouth.edu/~cs50/data/tse/toscrape/catalogue/category/books/fiction_10/index.html
+

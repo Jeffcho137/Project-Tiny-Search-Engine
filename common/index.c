@@ -45,9 +45,12 @@ index_t* index_new(const int numslots)
 void *index_find(index_t *index, const char *key)
 {
 	//finding the key for hashtable pointer in index
-        hashtable_find(index->ht, key);
+        return hashtable_find(index->ht, key);
 	
 }
+
+	
+
 
 
 /********** index_insert() **********/
@@ -69,7 +72,7 @@ bool index_insert(index_t *index, const char *key, void *item)
 void index_save_counter_help(void *arg, const int key, const int count)
 {
 	FILE *fp = arg;
-	fprintf(fp, "%d %d", key, count);
+	fprintf(fp, "%d %d ", key, count);
 
 }
 
@@ -79,7 +82,7 @@ void index_save_help(void *arg, const char *key, void *item)
 {
 	FILE *fp = arg;
 	counters_t *counter = item;
-	fprintf(fp, "%s", key);
+	fprintf(fp, "%s ", key);
 
 	counters_iterate(counter, fp, index_save_counter_help);
 	fprintf(fp, "\n");
@@ -120,7 +123,7 @@ void index_load(char *fname, index_t *index)
 	// checking each word in the file
 	while(fscanf(fp, "%s", &c[0]) == 1)
 	{
-		if (index_find(index, c) == NULL)
+		if (hashtable_find(index->ht, c) == NULL)
 		{
 			
 			// if doesn't exist, create a new counter
@@ -128,7 +131,7 @@ void index_load(char *fname, index_t *index)
 		}
 		else{
 			// if it does exist we take it
-			counter = index_find(index, c);
+			counter = hashtable_find(index->ht, c);
 		}
 
 		// checking in the file for numbers in ID count format
@@ -160,10 +163,15 @@ void index_load(char *fname, index_t *index)
 				counters_set(counter, id, count);
 				
 				//inserting the new counter into the index hashtable
-				index_insert(index, c, counter);
+				hashtable_insert(index->ht, c, counter);
+				//free(counter);
 			}
+		//free(counter);
 		}
+
+	//	counters_delete(counter);
 	}
+	//free(counter);
 	fclose(fp);
 }
 
@@ -185,4 +193,10 @@ void index_delete(index_t *index)
 	free(index);
 }
 
+/********** index_get() ***********/
+/* see index.h for more information */
 
+hashtable_t* index_get(index_t *index)
+{
+	return index->ht;
+}

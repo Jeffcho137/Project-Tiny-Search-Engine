@@ -63,7 +63,7 @@ void index_build(index_t *index, char *dir)
 {
 	int id = 1;
 	char c[101];
-	sprintf(c, "%d", id);
+	sprintf(c, "%d ", id);
 	char* pageDir = malloc((strlen(dir) + 3)*sizeof(char* ));
        	strcpy(pageDir, dir);
 	strcat(pageDir, "/");
@@ -106,7 +106,7 @@ void index_build(index_t *index, char *dir)
 
 
 		free(n);
-		sprintf(c,"%d", id);
+		sprintf(c,"%d ", id);
 		strcpy(pageDir, dir);
 		strcat(pageDir, "/");
 		strcat(pageDir, c);

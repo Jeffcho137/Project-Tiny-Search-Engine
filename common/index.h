@@ -10,12 +10,11 @@
 #include <string.h>
 #include <stdbool.h>
 #include "word.h"
-#include "webpage.h"
-#include "hashtable.h"
 #include "memory.h"
 #include "pagedir.h"
 #include "counters.h"
-
+#include "webpage.h"
+#include "hashtable.h"
 /********** struct index_t **********/
 /*
  * Struct that holds ht which will be initialized. It loads 
@@ -145,4 +144,12 @@ void index_delete(index_t *index);
 
 void index_delete_help(void *item);
 
+/********** index_get() **********/
+/*
+ * Input: index 
+ *
+ * Returns: hashtable assocaited with index
+ *
+ */
 
+hashtable_t* index_get(index_t *index);

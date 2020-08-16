@@ -40,34 +40,46 @@ void save_page(webpage_t *page, char *fname){
 
 bool verify_crawler(char *dir){
 
+	//Create link to the where files are stored
+	char filename[1000];
+	strcpy(filename,dir);
+	strcat(filename,"/.crawler");
+	
+	//Try to open .crawler for reading
+	FILE *fp;
+	if((fp = fopen(filename,"r"))){
+	//File exists thus its a crawler directory
+	       fclose(fp);
+	       return true;	
+	                       }
+	return false;
+	 }
 	        // remove ending unneccessary characters
 		//char *end = dir + strlen(dir) - 1;
 		//if (*end == '/'){
 		//      *end = '\0';
 		//}
 		
-	FILE *fp;
-	char *crawl = malloc(strlen(dir) + 10);
-	strcpy(crawl, dir);
-	strcat(crawl, "/.crawler");
+//	FILE *fp;
+//	char *crawl = malloc(strlen(dir) + 10);
+//	strcpy(crawl, dir);
+//	strcat(crawl, "/.crawler");
 	
 	// checking to open file
-	if ((fp = fopen(crawl, "r")) == NULL){
-	        // free the string
-	        free(crawl);
-	        return false;
-	}
+//	if ((fp = fopen(crawl, "r")) == NULL){
+//	        // free the string
+//	        free(crawl);
+//	        return false;
+//	}
 	
-	else{
-
-	                                                                                                                                                                                    fclose(fp);
-	
-		// free the string
-	        free(crawl);
+//	else{
+//	   	fclose(fp);
+	// free the string
+//	        free(crawl);
 		 
-		return true;
-		                                                                                                                                                                                }
-}                                                                                                                                                                                                                            
+//		return true;
+//		                                                                                                                                                                                }
+                                                                                                                                                                                                                            
 
 /********** verify_file() **********/
 /* see pagedir.h for more information about verify_file */

@@ -5,13 +5,15 @@ The common module is used by the TSE and has different parts dedicated to differ
 
 ## Usage
 
-Building `common.a`: `make`
-Cleaning up: `make clean`
+1. Building `common.a`: `make`
+2. Cleaning up: `make clean`
 
 ## Notes
-`pagedir` - function utilized by crawler
+* `pagedir` - function utilized by crawler
 compiling archives file to `common.a`
 
-`index` - function used by indexer
+* `index` - function used by indexer
 
-`word` - function used by the indexer
+* `word` - function used by the indexer
+
+
